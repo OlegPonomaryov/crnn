@@ -1,3 +1,4 @@
+"""Feature sequence extraction layer"""
 import tensorflow as tf
 
 

@@ -1,23 +1,28 @@
-import tensorflow as tf
+"""Tests for the ConvToRec layer"""
+import numpy as np
+
 from numpy.testing import assert_array_equal
 
 from crnn.layers import ConvToRec
 
 
 def test_call__output_shape_is_correct():
+    samples, rows, columns, channels = 32, 8, 24, 128
+    inputs = np.random.uniform(size=[samples, rows, columns, channels]).astype(np.float32)
     conv_to_rec = ConvToRec()
-    inputs = tf.random.uniform([32, 9, 12, 128])
 
     outputs = conv_to_rec(inputs)
 
-    assert_array_equal(outputs.shape, [32, 12, 9*128])
+    assert_array_equal(outputs.shape, [samples, columns, rows*channels])
 
 
 def test_call__output_values_are_correct():
+    samples, rows, columns, channels = 32, 8, 24, 128
+    inputs = np.random.uniform(size=[samples, rows, columns, channels]).astype(np.float32)
     conv_to_rec = ConvToRec()
-    inputs = tf.random.uniform([32, 9, 12, 128])
 
     outputs = conv_to_rec(inputs)
 
-    for i in range(inputs.shape[2]):
-        assert_array_equal(outputs[:, i], tf.reshape(inputs[:, :, i, :], [inputs.shape[0], -1]))
+    for i in range(columns):
+        column = inputs[:, :, i, :]
+        assert_array_equal(outputs[:, i], np.reshape(column, [samples, -1]))
