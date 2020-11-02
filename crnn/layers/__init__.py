@@ -1,2 +1,2 @@
 """Keras layers for CRNN implementation"""
-from ._conv_to_rec import ConvToRec
+from ._map_to_sequence import MapToSequence

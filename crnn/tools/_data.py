@@ -9,7 +9,10 @@ def get_sequences_lengths(sequences, padding_constant=None):
     :param padding_constant: A padding constant value that shouldn't be included into the lengths of the sequences (None
         if there is no padding), only padding at the end of a sequence is supported
     """
-    sequences_count, max_sequence_length = tf.shape(sequences)
+    sequences_shape = tf.shape(sequences)
+    sequences_count = sequences_shape[0]
+    max_sequence_length = sequences_shape[1]
+
     if padding_constant is None:
         return tf.fill((sequences_count,), max_sequence_length)
     else:
