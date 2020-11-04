@@ -10,10 +10,12 @@ class CTCLoss(tf.keras.losses.Loss):
 
     :param padding_constant: A padding constant value that shouldn't be included into the lengths of the true labels
         sequences (None if there is no padding), only padding at the end of a sequence is supported
+    :param reduction: Reduction argument for the base tf.keras.losses.Loss class
+    :param name: Optional name for the op
     """
 
-    def __init__(self, padding_constant=None):
-        super().__init__()
+    def __init__(self, padding_constant=None, reduction=tf.losses.Reduction.AUTO, name=None):
+        super().__init__(reduction=reduction, name=name)
         self.padding_constant = padding_constant
 
     def call(self, y_true, y_pred):
