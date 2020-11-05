@@ -14,7 +14,7 @@ class CTCLossLayer(tf.keras.layers.Layer):
     """
 
     def __init__(self, y_true_padding_const=None, name=None):
-        super().__init__(ame=name)
+        super().__init__(name=name)
         self.y_true_padding_const = y_true_padding_const
 
     def call(self, y_true, y_pred, input=None, input_lengths=None):
