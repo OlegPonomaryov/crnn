@@ -1,2 +1,2 @@
 """Loss functions"""
-from ._ctc_loss import CTCLoss
+from ._ctc_loss import CTCLoss, ctc_loss

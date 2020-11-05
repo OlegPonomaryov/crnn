@@ -1,2 +1,2 @@
 """Useful tools"""
-from ._data import get_sequences_lengths
+from ._tools import get_sequences_lengths, get_output_length
